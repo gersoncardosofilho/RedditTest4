@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gersoncardoso.reddittest4.Connection.Connection;
 import br.com.gersoncardoso.reddittest4.Model.Post;
 
 /**
@@ -49,7 +50,7 @@ public class PostsHolder {
      * @return
      */
     public List<Post> fetchPosts(){
-        String raw=RemoteData.readContents(url);
+        String raw= Connection.readContents(url);
         List<Post> list=new ArrayList<Post>();
         try{
             JSONObject data=new JSONObject(raw)
