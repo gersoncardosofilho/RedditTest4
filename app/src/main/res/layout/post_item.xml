@@ -4,40 +4,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/post_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/post_score"
-        android:layout_alignParentTop="true"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        />
-
-    <TextView
+    <!--    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/post_title"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:id="@+id/post_permalink"/>
+        android:id="@+id/post_permalink"/>-->
+
+    <TextView
+        android:id="@+id/post_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignTop="@+id/post_score"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/post_score" android:textColor="@color/colorPrimaryDark" />
+
+    <TextView
+        android:id="@+id/post_score"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@color/colorAccent"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/post_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/post_score"
-        android:layout_below="@+id/post_permalink"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        />
-
-    <TextView
-        android:id="@+id/post_score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        />
-
+        android:layout_alignBottom="@+id/post_score"
+        android:layout_toEndOf="@+id/post_score" android:textColor="@color/colorPrimaryDark" />
 
 
 </RelativeLayout>

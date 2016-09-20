@@ -128,14 +128,14 @@ public class PostsFragment extends Fragment {
                 postScore=(TextView)convertView
                         .findViewById(R.id.post_score);
 
-                TextView postPermalink;
+                /*TextView postPermalink;
                 postPermalink=(TextView)convertView
-                        .findViewById(R.id.post_permalink);
+                        .findViewById(R.id.post_permalink);*/
 
                 postTitle.setText(posts.get(position).getTitle());
                 postDetails.setText(posts.get(position).getDetails());
                 postScore.setText(posts.get(position).getScore());
-                postPermalink.setText(posts.get(position).getPermalink());
+                /*postPermalink.setText(posts.get(position).getPermalink());*/
                 return convertView;
             }
         };
