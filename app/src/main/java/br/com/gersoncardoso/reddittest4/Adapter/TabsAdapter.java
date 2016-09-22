@@ -36,6 +36,7 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
             switch (position){
                 case 0:
                     HotFragment tab1 = new HotFragment();
+                    tab1.newInstance("askreddit");
                     return tab1;
                 case 1:
                     NewFragment tab2 = new NewFragment();
