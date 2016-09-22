@@ -1,35 +1,54 @@
 package br.com.gersoncardoso.reddittest4;
 
-import android.Manifest;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 
-import br.com.gersoncardoso.reddittest4.Fragment.PostsFragment;
+import br.com.gersoncardoso.reddittest4.Adapter.TabsAdapter;
 
-public class MainActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback {
-
-    private static final int REQUEST_INTERNET = 0;
-
-    private static String PERMISSIONS = Manifest.permission.INTERNET;
-
-    private View mLayout;
+public class MainActivity extends AppCompatActivity  {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //addFragment();
-        mLayout = findViewById(R.id.fragments_holder);
-       addFragment();
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        tabLayout.addTab(tabLayout.newTab().setText("Hot"));
+        tabLayout.addTab(tabLayout.newTab().setText("New"));
+        tabLayout.addTab(tabLayout.newTab().setText("Rising"));
+        tabLayout.addTab(tabLayout.newTab().setText("Controversial"));
+        tabLayout.addTab(tabLayout.newTab().setText("Top"));
+        tabLayout.addTab(tabLayout.newTab().setText("Gilded"));
+        tabLayout.addTab(tabLayout.newTab().setText("Wiki"));
+        tabLayout.addTab(tabLayout.newTab().setText("Promoted"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        //tabLayout.animate();
+
+        final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        final TabsAdapter adapter = new TabsAdapter (getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
 
 
-    private void addFragment()
-    {
-        getSupportFragmentManager().beginTransaction().add(R.id.fragments_holder, PostsFragment.newInstance("askreddit")).commit();
-    }
+
 }
