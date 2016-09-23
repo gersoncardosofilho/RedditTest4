@@ -10,8 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,7 +80,7 @@ public class NewFragment extends Fragment {
     }
 
     private void initialize(){
-     /*   // This should run only once for the fragment as the
+        // This should run only once for the fragment as the
         // setRetainInstance(true) method has been called on
         // this fragment
 
@@ -96,9 +94,9 @@ public class NewFragment extends Fragment {
                     posts.addAll(postsHolder.fetchPosts());
                 }
             }.start();
-        }*/
+        }
 
-        Post post = new Post();
+        /*Post post = new Post();
         post.author = "Gerson C";
         post.points = 100;
         post.numComments = 1000;
@@ -110,7 +108,7 @@ public class NewFragment extends Fragment {
         post2.points = 200;
         post2.numComments = 2000;
         post2.title = "Post 2 Titulo";
-        posts.add(post2);
+        posts.add(post2);*/
 
         Log.d("Posts", posts.toString());
 

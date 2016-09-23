@@ -30,3 +30,6 @@ proguard/
 
 # Android Studio captures folder
 captures/
+libs/
+src/main/res/drawable/
+src/main/res/values/menu/

@@ -1,7 +1,5 @@
 package br.com.gersoncardoso.reddittest4.Adapter;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gersoncardoso.reddittest4.Model.Post;
@@ -36,10 +33,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.MyViewHolder
         }
     }
 
-   /* public PostsAdapter(String[] myDataSet)
-    {
-        mDataSet = myDataSet;
-    }*/
+
 
     public PostsAdapter(List<Post> postsList)
     {
