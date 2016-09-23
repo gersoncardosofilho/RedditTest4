@@ -49,7 +49,7 @@ public class PostsHolder {
      *
      * @return
      */
-    public List<Post> fetchPosts(){
+    public List<Post>  fetchPosts(){
         String raw= Connection.readContents(url);
         List<Post> list=new ArrayList<Post>();
         try{

@@ -40,6 +40,7 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
                     return tab1;
                 case 1:
                     NewFragment tab2 = new NewFragment();
+                    tab2.newInstance("askreddit");
                     return tab2;
                 case 2:
                     RisingFragment tab3 = new RisingFragment();

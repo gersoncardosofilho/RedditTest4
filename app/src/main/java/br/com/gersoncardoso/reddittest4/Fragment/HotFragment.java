@@ -63,7 +63,7 @@ public class HotFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initialize();
+        //initialize();
     }
 
     private void initialize(){
