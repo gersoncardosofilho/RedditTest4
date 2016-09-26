@@ -19,23 +19,6 @@ import br.com.gersoncardoso.reddittest4.Util.MyCache;
 
 public class Connection {
 
-    /*public static HttpURLConnection getConnection(String url)
-    {
-        System.out.println("URL: " + url);
-        HttpURLConnection conn = null;
-
-        try{
-            conn = (HttpURLConnection)new URL(url).openConnection();
-            conn.setReadTimeout(30000);
-            conn.setRequestProperty("User-Agent","Alien V1.0");
-        }catch(MalformedURLException ex){
-            Log.e("getConnection()","Invalid URL: " + ex.toString());
-        }catch(IOException ex){
-            Log.e("getConnection()","Could not connect " + ex.toString());
-        }
-        return conn;
-    }*/
-
     public static HttpURLConnection getConnection(String url)
     {
         URL u = null;

@@ -31,6 +31,8 @@ public class NewFragment extends Fragment {
     List<Post> posts;
     PostsHolder postsHolder;
 
+    ArrayList<Post> testePost = new ArrayList<Post>();
+
 
     public NewFragment()
     {
@@ -50,7 +52,7 @@ public class NewFragment extends Fragment {
         super.onCreate(savedInstanceState);
         Log.d("Acesso", "1");
         setRetainInstance(true);
-        initialize();
+        //initialize();
 
     }
 
@@ -91,7 +93,7 @@ public class NewFragment extends Fragment {
 
             new Thread(){
                 public void run(){
-                    posts.addAll(postsHolder.fetchPosts());
+                    testePost.addAll(postsHolder.fetchPosts());
                 }
             }.start();
         }
