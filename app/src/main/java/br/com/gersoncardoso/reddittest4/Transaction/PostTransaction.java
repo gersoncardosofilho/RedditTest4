@@ -5,14 +5,11 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.gersoncardoso.reddittest4.Connection.MyAsyncMethods;
 import br.com.gersoncardoso.reddittest4.Connection.RestClient;
 import br.com.gersoncardoso.reddittest4.Model.Post;
-import br.com.gersoncardoso.reddittest4.MyPreferences.MyPreferences;
-import br.com.gersoncardoso.reddittest4.Util.ParseJson;
 
 /**
  * Created by gersoncardoso on 26/09/2016.
@@ -47,14 +44,16 @@ public class PostTransaction extends AsyncTask<String, String, String> {
 
     @Override
     protected void onPostExecute(String result) {
+
         Log.d("PostTransaction","3 - onPostExecute");
         if(result != null) {
             Log.d("String json: ", result);
-
+            myAsyncMethods.onPostExecute(result);
         }
         else
         {
             myAsyncMethods.onPostExecute("");
         }
+
     }
 }

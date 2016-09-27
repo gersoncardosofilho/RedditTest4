@@ -14,10 +14,9 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gersoncardoso.reddittest4.Adapter.PostsAdapter;
 import br.com.gersoncardoso.reddittest4.Model.Post;
 import br.com.gersoncardoso.reddittest4.R;
-import br.com.gersoncardoso.reddittest4.Util.PostsHolder;
+
 
 /**
  * Created by gersoncardoso on 22/09/2016.
@@ -29,7 +28,7 @@ public class NewFragment extends Fragment {
 
     String subreddit;
     List<Post> posts;
-    PostsHolder postsHolder;
+
 
     ArrayList<Post> testePost = new ArrayList<Post>();
 
@@ -38,13 +37,6 @@ public class NewFragment extends Fragment {
     {
         handler=new Handler();
         posts=new ArrayList<Post>();
-    }
-
-    public static Fragment newInstance(String subreddit){
-        PostsFragment pf=new PostsFragment();
-        pf.subreddit=subreddit;
-        pf.postsHolder=new PostsHolder(pf.subreddit);
-        return pf;
     }
 
     @Override
@@ -72,8 +64,6 @@ public class NewFragment extends Fragment {
         RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv_recycler_view);
         rv.setHasFixedSize(true);
 
-        PostsAdapter postsAdapter = new PostsAdapter(posts);
-        rv.setAdapter(postsAdapter);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         rv.setLayoutManager(linearLayoutManager);
@@ -86,17 +76,7 @@ public class NewFragment extends Fragment {
         // setRetainInstance(true) method has been called on
         // this fragment
 
-        if(posts.size()==0){
 
-            // Must execute network tasks outside the UI
-            // thread. So create a new thread.
-
-            new Thread(){
-                public void run(){
-                    testePost.addAll(postsHolder.fetchPosts());
-                }
-            }.start();
-        }
 
         /*Post post = new Post();
         post.author = "Gerson C";

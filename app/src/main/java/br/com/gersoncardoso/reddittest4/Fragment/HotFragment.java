@@ -1,17 +1,13 @@
 package br.com.gersoncardoso.reddittest4.Fragment;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,48 +18,48 @@ import br.com.gersoncardoso.reddittest4.Model.Post;
 import br.com.gersoncardoso.reddittest4.R;
 import br.com.gersoncardoso.reddittest4.Transaction.PostTransaction;
 import br.com.gersoncardoso.reddittest4.Util.ParseJson;
-import br.com.gersoncardoso.reddittest4.Util.PostsHolder;
+
 
 /**
  * Created by gersoncardoso on 22/09/2016.
  */
 
-public class HotFragment extends Fragment {
+public class HotFragment extends Fragment  {
 
-    ListView postsList;
-    ArrayAdapter<Post> adapter;
-    Handler handler;
-    TextView testeView;
-    Button button;
+    private static final String TAG = "HotFragment";
 
     String subreddit;
     List<Post> posts;
-    PostsHolder postsHolder;
+    private String jsonString;
+
+    private RecyclerView recyclerView;
+    private PostsAdapter postsAdapter;
+
+    private MyAsyncMethods listener;
 
     public HotFragment() {
-        handler = new Handler();
         posts = new ArrayList<Post>();
     }
 
-    public static Fragment newInstance(String subreddit) {
-        HotFragment hf = new HotFragment();
-        hf.subreddit = subreddit;
-        hf.postsHolder = new PostsHolder(hf.subreddit);
-        return hf;
-    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.hot_fragment, container, false);
-        /*postsList=(ListView)v.findViewById(R.id.posts_list);*/
-        testeView = (TextView) v.findViewById(R.id.textView);
 
-        PostsAdapter adapter = new PostsAdapter(posts);
+        PostTransaction pt = new PostTransaction("", new MyAsyncMethods() {
 
+            @Override
+            public void onPostExecute(String result) {
+
+            }
+        }, getActivity());
+        pt.execute();
 
         return v;
     }
+
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,7 +70,8 @@ public class HotFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initialize();
+        //initialize();
+
     }
 
     private void initialize() {
@@ -82,12 +79,15 @@ public class HotFragment extends Fragment {
         Log.d("HotFragment", " foi inicializado");
 
         PostTransaction pt = new PostTransaction("", new MyAsyncMethods() {
+
             @Override
             public void onPostExecute(String result) {
-
+                posts = new ArrayList<Post>();
+                posts = ParseJson.parsePostsJson(result);
             }
         }, getActivity());
         pt.execute();
+
 
 
     }

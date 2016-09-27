@@ -1,7 +1,5 @@
 package br.com.gersoncardoso.reddittest4.Connection;
 
-import android.app.Activity;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,7 +33,6 @@ public class RestClient
         }
     }
 
-   private static String URL_TEMPLATE = "https://www.reddit.com/SUBREDDIT/.json";
 
     public String getMessage()
     {
@@ -47,25 +44,10 @@ public class RestClient
         return response;
     }
 
-    public RestClient(String subreddit, REQUEST_METHOD request_method)
+    public RestClient(String url, REQUEST_METHOD request_method)
     {
-        this.url = generateURL(subreddit);
+        this.url = url;
         this.request_method = request_method;
-    }
-
-    private static String generateURL(String subreddit)
-    {
-        String url1;
-        if(subreddit == "")
-        {
-            url1 = "https://www.reddit.com/.json";
-            return url1;
-        }
-        else
-        {
-            url1 = URL_TEMPLATE.replace("{SUBREDDIT}",subreddit);
-            return url1;
-        }
     }
 
     public void execute()

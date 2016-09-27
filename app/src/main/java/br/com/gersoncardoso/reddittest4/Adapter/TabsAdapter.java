@@ -9,6 +9,7 @@ import br.com.gersoncardoso.reddittest4.Fragment.GildedFragment;
 import br.com.gersoncardoso.reddittest4.Fragment.HotFragment;
 import br.com.gersoncardoso.reddittest4.Fragment.NewFragment;
 import br.com.gersoncardoso.reddittest4.Fragment.PromotedFragment;
+import br.com.gersoncardoso.reddittest4.Fragment.QueziaFragment;
 import br.com.gersoncardoso.reddittest4.Fragment.RisingFragment;
 import br.com.gersoncardoso.reddittest4.Fragment.TopFragment;
 import br.com.gersoncardoso.reddittest4.Fragment.WikiFragment;
@@ -36,11 +37,9 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
             switch (position){
                 case 0:
                     HotFragment tab1 = new HotFragment();
-                    tab1.newInstance("askreddit");
                     return tab1;
                 case 1:
                     NewFragment tab2 = new NewFragment();
-                    tab2.newInstance("askreddit");
                     return tab2;
                 case 2:
                     RisingFragment tab3 = new RisingFragment();
@@ -60,6 +59,9 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
                 case 7:
                     PromotedFragment tab8 = new PromotedFragment();
                     return tab8;
+                case 8:
+                    QueziaFragment tab9 = new QueziaFragment();
+                    return tab9;
                 default:
                     return null;
             }

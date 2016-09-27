@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity  {
         tabLayout.addTab(tabLayout.newTab().setText("Gilded"));
         tabLayout.addTab(tabLayout.newTab().setText("Wiki"));
         tabLayout.addTab(tabLayout.newTab().setText("Promoted"));
+        tabLayout.addTab(tabLayout.newTab().setText("Quezia"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         //tabLayout.animate();
 
