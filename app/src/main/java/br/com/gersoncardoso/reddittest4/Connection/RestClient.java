@@ -1,5 +1,7 @@
 package br.com.gersoncardoso.reddittest4.Connection;
 
+import android.app.Activity;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,18 +21,21 @@ public class RestClient
     private String message;
     private String response;
     private String subreddit;
+    private REQUEST_METHOD request_method;
 
-    public RestClient(String subreddit)
+    public enum REQUEST_METHOD
     {
-        this.subreddit = subreddit;
+        GET("GET"),
+        POST("POST");
+
+        String value;
+        REQUEST_METHOD(String value)
+        {
+            this.value = value;
+        }
     }
 
-    private static String URL_TEMPLATE = "https://www.reddit.com/SUBREDDIT/.json";
-
-    public int getResponseCode()
-    {
-        return responseCode;
-    }
+   private static String URL_TEMPLATE = "https://www.reddit.com/SUBREDDIT/.json";
 
     public String getMessage()
     {
@@ -42,21 +47,29 @@ public class RestClient
         return response;
     }
 
-    private void generateURL(String subreddit)
+    public RestClient(String subreddit, REQUEST_METHOD request_method)
     {
+        this.url = generateURL(subreddit);
+        this.request_method = request_method;
+    }
+
+    private static String generateURL(String subreddit)
+    {
+        String url1;
         if(subreddit == "")
         {
-            url = "https://www.reddit.com/.json";
+            url1 = "https://www.reddit.com/.json";
+            return url1;
         }
         else
         {
-            url = url.replace("{SUBREDDIT}",subreddit);
+            url1 = URL_TEMPLATE.replace("{SUBREDDIT}",subreddit);
+            return url1;
         }
     }
 
     public void execute()
     {
-        generateURL(subreddit);
 
         URL url2;
         HttpURLConnection conn;
@@ -66,7 +79,7 @@ public class RestClient
             conn = (HttpURLConnection) url2.openConnection();
             conn.setReadTimeout(60000);
             conn.setConnectTimeout(60000);
-            conn.setRequestMethod("GET");
+            conn.setRequestMethod(request_method.toString());
             conn.setUseCaches(false);
 
             conn.connect();
@@ -82,9 +95,6 @@ public class RestClient
             }
             br.close();
             response = stringBuffer.toString();
-
-
-
         }catch(MalformedURLException ex){
             ex.printStackTrace();
         }catch(IOException ex){

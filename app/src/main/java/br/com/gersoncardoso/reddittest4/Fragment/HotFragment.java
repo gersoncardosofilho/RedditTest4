@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +16,12 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gersoncardoso.reddittest4.Adapter.PostsAdapter;
+import br.com.gersoncardoso.reddittest4.Connection.MyAsyncMethods;
 import br.com.gersoncardoso.reddittest4.Model.Post;
 import br.com.gersoncardoso.reddittest4.R;
 import br.com.gersoncardoso.reddittest4.Transaction.PostTransaction;
+import br.com.gersoncardoso.reddittest4.Util.ParseJson;
 import br.com.gersoncardoso.reddittest4.Util.PostsHolder;
 
 /**
@@ -36,25 +40,28 @@ public class HotFragment extends Fragment {
     List<Post> posts;
     PostsHolder postsHolder;
 
-    public HotFragment(){
-        handler=new Handler();
-        posts=new ArrayList<Post>();
+    public HotFragment() {
+        handler = new Handler();
+        posts = new ArrayList<Post>();
     }
 
-    public static Fragment newInstance(String subreddit){
-        HotFragment hf=new HotFragment();
-        hf.subreddit=subreddit;
-        hf.postsHolder=new PostsHolder(hf.subreddit);
+    public static Fragment newInstance(String subreddit) {
+        HotFragment hf = new HotFragment();
+        hf.subreddit = subreddit;
+        hf.postsHolder = new PostsHolder(hf.subreddit);
         return hf;
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v=inflater.inflate(R.layout.hot_fragment, container, false);
-        postsList=(ListView)v.findViewById(R.id.posts_list);
-        testeView=(TextView)v.findViewById(R.id.testeView);
-        button = (Button) v.findViewById(R.id.button);
+        View v = inflater.inflate(R.layout.hot_fragment, container, false);
+        /*postsList=(ListView)v.findViewById(R.id.posts_list);*/
+        testeView = (TextView) v.findViewById(R.id.textView);
+
+        PostsAdapter adapter = new PostsAdapter(posts);
+
+
         return v;
     }
 
@@ -70,20 +77,18 @@ public class HotFragment extends Fragment {
         initialize();
     }
 
-    private void initialize(){
-        button.setOnClickListener(new View.OnClickListener() {
+    private void initialize() {
+
+        Log.d("HotFragment", " foi inicializado");
+
+        PostTransaction pt = new PostTransaction("", new MyAsyncMethods() {
             @Override
-            public void onClick(View v) {
-                PostTransaction pt = new PostTransaction(""){
-                    @Override
-                    protected void onPostExecute(String s) {
-                        testeView.setText(s);
-                    }
-                };
+            public void onPostExecute(String result) {
 
-                pt.execute();
             }
-        });
-    }
+        }, getActivity());
+        pt.execute();
 
+
+    }
 }

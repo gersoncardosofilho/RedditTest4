@@ -1,11 +1,18 @@
 package br.com.gersoncardoso.reddittest4.Transaction;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.gersoncardoso.reddittest4.Connection.MyAsyncMethods;
 import br.com.gersoncardoso.reddittest4.Connection.RestClient;
+import br.com.gersoncardoso.reddittest4.Model.Post;
+import br.com.gersoncardoso.reddittest4.MyPreferences.MyPreferences;
+import br.com.gersoncardoso.reddittest4.Util.ParseJson;
 
 /**
  * Created by gersoncardoso on 26/09/2016.
@@ -18,26 +25,36 @@ public class PostTransaction extends AsyncTask<String, String, String> {
     RestClient restClient;
     private String response;
 
-    public PostTransaction(String subreddit)
-    {
-        try{
-            restClient = new RestClient(subreddit);
-            restClient.execute();
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }
-    }
+    List<Post> posts;
+    String subreddit;
 
+    public PostTransaction(String subreddit, MyAsyncMethods myAsyncMethods, Activity activity)
+    {
+        Log.d("PostTransaction","1 - constructor");
+
+        this.myAsyncMethods = myAsyncMethods;
+        this.subreddit = subreddit;
+        this.context = activity;
+    }
 
     @Override
     protected String doInBackground(String... strings) {
+        Log.d("PostTransaction","2 - doInBackground");
+        restClient = new RestClient(subreddit, RestClient.REQUEST_METHOD.GET);
         restClient.execute();
-        response = restClient.getResponse();
-        return response;
+        return restClient.getResponse();
     }
 
     @Override
-    protected void onPostExecute(String s) {
-        Log.d("String json: ",s);
+    protected void onPostExecute(String result) {
+        Log.d("PostTransaction","3 - onPostExecute");
+        if(result != null) {
+            Log.d("String json: ", result);
+
+        }
+        else
+        {
+            myAsyncMethods.onPostExecute("");
+        }
     }
 }

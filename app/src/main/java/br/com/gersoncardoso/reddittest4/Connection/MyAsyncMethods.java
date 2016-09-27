@@ -6,5 +6,5 @@ package br.com.gersoncardoso.reddittest4.Connection;
 
 public interface MyAsyncMethods {
 
-    public void onPostExecure(String result);
+    public void onPostExecute(String result);
 }
