@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.List;
 
 import br.com.gersoncardoso.reddittest4.Adapter.PostsAdapter;
-import br.com.gersoncardoso.reddittest4.Model.Post;
+import br.com.gersoncardoso.reddittest4.Data.Post;
 import br.com.gersoncardoso.reddittest4.R;
 import br.com.gersoncardoso.reddittest4.Util.PostService;
 

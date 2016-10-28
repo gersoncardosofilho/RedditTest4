@@ -12,16 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gersoncardoso.reddittest4.Adapter.PostsAdapter;
 import br.com.gersoncardoso.reddittest4.Connection.MyAsyncMethods;
-import br.com.gersoncardoso.reddittest4.Model.Post;
+import br.com.gersoncardoso.reddittest4.Data.Post;
 import br.com.gersoncardoso.reddittest4.R;
-import br.com.gersoncardoso.reddittest4.Transaction.PostTransaction;
 import br.com.gersoncardoso.reddittest4.Util.MyUtil;
-import br.com.gersoncardoso.reddittest4.Util.ParseJson;
 
 
 /**
@@ -37,6 +33,8 @@ public class HotFragment extends Fragment  {
     private LinearLayoutManager linearLayoutManager;
     private String subreddit;
     private URL url;
+
+    MyAsyncMethods mam;
 
 
 
@@ -69,11 +67,14 @@ public class HotFragment extends Fragment  {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        tasksPost();
+        taskPosts();
     }
 
     private void taskPosts()
     {
-        new GetPostsTask().execute();
+
+
     }
+
+
 }

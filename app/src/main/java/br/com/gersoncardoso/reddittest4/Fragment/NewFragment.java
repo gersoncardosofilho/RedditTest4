@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.gersoncardoso.reddittest4.Model.Post;
+import br.com.gersoncardoso.reddittest4.Data.Post;
 import br.com.gersoncardoso.reddittest4.R;
 
 

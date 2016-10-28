@@ -5,10 +5,11 @@ import android.util.Log;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 
 import br.com.gersoncardoso.reddittest4.Connection.RestClient;
-import br.com.gersoncardoso.reddittest4.Model.Post;
+import br.com.gersoncardoso.reddittest4.Data.Post;
 
 /**
  * Created by gersoncardoso on 27/09/2016.
@@ -16,20 +17,18 @@ import br.com.gersoncardoso.reddittest4.Model.Post;
 
 public class PostService {
 
-    private static final String URL = "https://www.reddit.com/{SUBREDDIT}/.Json";
+
     private static final boolean LOG_ON = false;
     private static final String TAG = "PostService";
-    private static String url;
 
-    public static List<Post> getPosts(Context context, String subreddit) throws IOException
+
+    public static List<Post> getPosts(Context context, URL url) throws IOException
     {
-       url = "https://www.reddit.com/.json";
-
         List<Post> posts = getPostsFromUrl(context, url);
         return posts;
     }
 
-    public static List<Post> getPostsFromUrl(Context context, String url) throws IOException
+    public static List<Post> getPostsFromUrl(Context context, URL url) throws IOException
     {
         RestClient restClient = new RestClient(url, RestClient.REQUEST_METHOD.GET);
         restClient.execute();
