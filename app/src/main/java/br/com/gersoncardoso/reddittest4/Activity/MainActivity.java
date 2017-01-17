@@ -1,4 +1,4 @@
-package br.com.gersoncardoso.reddittest4;
+package br.com.gersoncardoso.reddittest4.Activity;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
 import br.com.gersoncardoso.reddittest4.Adapter.TabsAdapter;
+import br.com.gersoncardoso.reddittest4.R;
 
 public class MainActivity extends AppCompatActivity  {
 

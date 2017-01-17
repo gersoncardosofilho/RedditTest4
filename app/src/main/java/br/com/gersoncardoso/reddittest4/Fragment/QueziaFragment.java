@@ -1,5 +1,6 @@
 package br.com.gersoncardoso.reddittest4.Fragment;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,6 +20,8 @@ import br.com.gersoncardoso.reddittest4.Adapter.PostsAdapter;
 import br.com.gersoncardoso.reddittest4.Model.Post;
 import br.com.gersoncardoso.reddittest4.R;
 import br.com.gersoncardoso.reddittest4.Util.PostService;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by gersoncardoso on 27/09/2016.
@@ -26,10 +29,18 @@ import br.com.gersoncardoso.reddittest4.Util.PostService;
 
 public class QueziaFragment extends Fragment {
 
-    protected RecyclerView recyclerView;
     protected List<Post> posts;
     private LinearLayoutManager linearLayoutManager;
     private String subreddit;
+
+    @BindView(R.id.rv_recycler_view)
+    RecyclerView recyclerView;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,8 +55,8 @@ public class QueziaFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.quezia_fragment, container,false);
+        ButterKnife.bind(this, view);
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.q_rv_recycler_view);
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

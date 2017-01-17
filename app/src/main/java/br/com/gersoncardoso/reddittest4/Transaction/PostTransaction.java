@@ -8,7 +8,7 @@ import android.util.Log;
 import java.util.List;
 
 import br.com.gersoncardoso.reddittest4.Connection.MyAsyncMethods;
-import br.com.gersoncardoso.reddittest4.Connection.RestClient;
+import br.com.gersoncardoso.reddittest4.Connection.RestClient__;
 import br.com.gersoncardoso.reddittest4.Model.Post;
 
 /**
@@ -19,7 +19,7 @@ public class PostTransaction extends AsyncTask<String, String, String> {
 
     private MyAsyncMethods myAsyncMethods;
     private Context context;
-    RestClient restClient;
+    RestClient__ restClient;
     private String response;
 
     List<Post> posts;
@@ -37,7 +37,7 @@ public class PostTransaction extends AsyncTask<String, String, String> {
     @Override
     protected String doInBackground(String... strings) {
         Log.d("PostTransaction","2 - doInBackground");
-        restClient = new RestClient(subreddit, RestClient.REQUEST_METHOD.GET);
+        restClient = new RestClient__(subreddit, RestClient__.REQUEST_METHOD.GET);
         restClient.execute();
         return restClient.getResponse();
     }

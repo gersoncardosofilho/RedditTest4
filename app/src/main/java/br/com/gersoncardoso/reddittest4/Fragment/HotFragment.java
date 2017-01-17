@@ -1,5 +1,6 @@
 package br.com.gersoncardoso.reddittest4.Fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,11 +18,17 @@ import java.util.List;
 
 import br.com.gersoncardoso.reddittest4.Adapter.PostsAdapter;
 import br.com.gersoncardoso.reddittest4.Connection.MyAsyncMethods;
+import br.com.gersoncardoso.reddittest4.Connection.RestClient;
 import br.com.gersoncardoso.reddittest4.Model.Post;
 import br.com.gersoncardoso.reddittest4.R;
 import br.com.gersoncardoso.reddittest4.Transaction.PostTransaction;
 import br.com.gersoncardoso.reddittest4.Util.MyUtil;
 import br.com.gersoncardoso.reddittest4.Util.ParseJson;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -32,13 +39,19 @@ public class HotFragment extends Fragment  {
 
     private static final String TAG = "HotFragment";
 
-    protected RecyclerView recyclerView;
     protected List<Post> posts;
     private LinearLayoutManager linearLayoutManager;
     private String subreddit;
     private URL url;
 
+    @BindView(R.id.rv_recycler_view)
+    RecyclerView recyclerView;
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        RestClient.getInstance().getHotPosts(postsCallback);
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,12 +65,24 @@ public class HotFragment extends Fragment  {
         }
     }
 
+    private Callback<Post> postsCallback = new Callback<Post>() {
+        @Override
+        public void onResponse(Call<Post> call, Response<Post> response) {
+            Log.d(TAG, "postsCallback response.");
+        }
+
+        @Override
+        public void onFailure(Call<Post> call, Throwable t) {
+            Log.d(TAG, "postsCallback failure.");
+        }
+    };
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.hot_fragment, container, false);
+        ButterKnife.bind(this, view);
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.rv_recycler_view);
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -66,14 +91,5 @@ public class HotFragment extends Fragment  {
         return view;
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        tasksPost();
-    }
 
-    private void taskPosts()
-    {
-        new GetPostsTask().execute();
-    }
 }

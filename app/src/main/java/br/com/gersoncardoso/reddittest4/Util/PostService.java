@@ -7,7 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import br.com.gersoncardoso.reddittest4.Connection.RestClient;
+import br.com.gersoncardoso.reddittest4.Connection.RestClient__;
 import br.com.gersoncardoso.reddittest4.Model.Post;
 
 /**
@@ -31,7 +31,7 @@ public class PostService {
 
     public static List<Post> getPostsFromUrl(Context context, String url) throws IOException
     {
-        RestClient restClient = new RestClient(url, RestClient.REQUEST_METHOD.GET);
+        RestClient__ restClient = new RestClient__(url, RestClient__.REQUEST_METHOD.GET);
         restClient.execute();
         String json = restClient.getResponse();
         salvarCache(context,url,json);
